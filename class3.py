@@ -2,7 +2,7 @@ import subprocess
 import os
 
 class URLFinder:
-    def __init__(self, linkfinder_path="linkfinder.py", temp_file="temp.txt", output_file="urls.txt"):
+    def __init__(self, linkfinder_path="lib/linkfinder.py", temp_file="temp.txt", output_file="urls.txt"):
         self.linkfinder_path = linkfinder_path
         self.temp_file = temp_file
         self.output_file = output_file
