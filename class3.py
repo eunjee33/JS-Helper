@@ -12,14 +12,15 @@ class URLFinder:
         self.uniq_domains_file = uniq_domains_file
 
 
-    ## 최종 실행할 함수
-    def find_url(self, js_file):
+    """전체 프로세스 실행"""
+    def run(self, js_file):
         output = self.execute_linkfinder(js_file)
         urls = self.filter_links(output, js_file)
         uniq_domains = self.extract_domains(urls)
         self.write_output(urls, uniq_domains)
 
 
+    """linkfinder tool 실행"""
     def execute_linkfinder(self, js_file):
         try:
             # subprocess를 사용해 linkfinder.py 실행
@@ -32,6 +33,8 @@ class URLFinder:
             print(f"Unexpected error: {e}")
 
 
+    """1. 추출한 URL filter - text/html 과 같은 html 타입 형태는 제거"""
+    """2. 상대 경로 -> 절대 경로"""
     def filter_links(self, output, js_file):
         base_url = js_file.rsplit('/', 1)[0] + '/'
 
@@ -66,6 +69,7 @@ class URLFinder:
         return urls
 
 
+    """unique domain 추출"""
     def extract_domains(self, urls):
         uniq_domains = set()
 
@@ -76,16 +80,17 @@ class URLFinder:
         return uniq_domains
 
 
+    """결과를 file(.txt)로 저장"""
     def write_output(self, urls, uniq_domains):
         try:
             with open(self.urls_file, "a") as f:
-                for url in urls:  # 입력 순서대로 저장
+                for url in urls: 
                     f.write(url + "\n")
 
             print(f"URLs successfully appended to {self.urls_file}")
 
             with open(self.uniq_domains_file, "a") as f:
-                for domain in uniq_domains:  # 입력 순서대로 저장
+                for domain in uniq_domains:
                     f.write(domain + "\n")
 
             print(f"Domains successfully appended to {self.uniq_domains_file}")
