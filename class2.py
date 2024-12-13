@@ -40,4 +40,5 @@ if __name__ == "__main__":
         print(f"{BLUE}[Processing URL]{RESET}: {CYAN}{args.url}{RESET}")
         javaScriptExtractor.process_single_js(args.url)
     else:
+        
         print(f"{BRIGHT_YELLOW}Usage: python main.py --url URL [--json js_file.json] [--file js_file.js]")
