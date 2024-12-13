@@ -1,0 +1,8 @@
+selenium
+webdriver-manager
+beautifulsoup4
+selenium-wire
+blinker==1.4 
+mitmproxy==8.1.1
+httpx
+colorama
